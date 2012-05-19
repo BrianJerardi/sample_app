@@ -19,7 +19,7 @@ describe "User pages" do
     it { should have_selector('title', text: user.name) }
   end
   
-  describe "singup" do
+  describe "signup" do
     before {visit signup_path}
     
     let(:submit) { "Create my account" }
@@ -34,7 +34,7 @@ describe "User pages" do
       before do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "user@example.com"
-        fill_in "Passowrd",     with: "foobar"
+        fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
       
