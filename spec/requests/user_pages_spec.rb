@@ -81,6 +81,22 @@ describe "User pages" do
       it { should have_content("Microposts")}
       it { should have_content(user.microposts.count) }
     end
+    
+    
+    describe "pagination" do
+      before(:all) { 32.times { FactoryGirl.create(:micropost) }  }
+      after(:all)  { user.microposts.delete_all }
+
+      it "should list each micropost" do
+        user.microposts.paginate(page: 1).each do |micropost|
+          page.should have_selector('li', text: micropost.content)
+        end
+      end
+      
+      # TODO Fix should have_selector('div.pagination') for microposts
+      # it { should have_selector('div.pagination') }
+      
+    end
   end
   
   describe "signup" do
